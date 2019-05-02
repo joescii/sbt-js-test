@@ -22,7 +22,7 @@ package object sbtjs {
     def /(child:String):String = s + slash + child
   }
 
-  class SbtJsTestSpec(project:String) extends WordSpec with ShouldMatchers with ScalaFutures {
+  class SbtJsTestSpec(project:String) extends WordSpec with Matchers with ScalaFutures {
     import build.BuildInfo._
 
     implicit val defaultPatience = PatienceConfig(timeout = Span(45, Seconds), interval = Span(500, Millis))

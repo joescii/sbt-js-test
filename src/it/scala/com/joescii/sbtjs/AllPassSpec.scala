@@ -23,7 +23,7 @@ class AllPassSpec extends SbtJsTestSpec("allPass") {
     }
 
     "announce that 1 spec ran with 0 failures" in {
-      result.futureValue._2.reverse.apply(1) shouldEqual "[info] 1 spec, 0 failures"
+      result.futureValue._2.reverse.apply(3) shouldEqual "[info] 1 spec, 0 failures"
     }
 
     "announce that the task was successful" in {

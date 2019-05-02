@@ -12,7 +12,7 @@ class OneFailOnePendingSpec extends SbtJsTestSpec("oneFailOnePending") {
     }
 
     "announce that 2 specs ran with 1 failure" in {
-      result.futureValue._2.reverse.apply(2) shouldEqual "[info] 3 specs, 1 failure, 1 pending spec"
+      result.futureValue._2.reverse.apply(4) shouldEqual "[info] 3 specs, 1 failure, 1 pending spec"
     }
 
     "announce that the task was unsuccessful" in {

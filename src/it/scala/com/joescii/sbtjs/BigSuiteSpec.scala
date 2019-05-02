@@ -8,7 +8,7 @@ class BigSuiteSpec extends SbtJsTestSpec("bigSuite") {
     }
 
     "announce that 88 specs ran with 0 failures" in {
-      result.futureValue._2.reverse.apply(1) shouldEqual "[info] 88 specs, 0 failures, 4 pending specs"
+      result.futureValue._2.reverse.apply(3) shouldEqual "[info] 88 specs, 0 failures, 4 pending specs"
     }
 
     "announce that the task was successful" in {

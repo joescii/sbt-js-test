@@ -8,7 +8,7 @@ class TestOnlySpec extends SbtJsTestSpec("testOnly") {
     }
 
     "announce that 1 spec ran with 0 failures" in {
-      result.futureValue._2.reverse.apply(1) shouldEqual "[info] 1 spec, 0 failures"
+      result.futureValue._2.reverse.apply(3) shouldEqual "[info] 1 spec, 0 failures"
     }
 
     "announce that the task was successful" in {
@@ -21,7 +21,7 @@ class TestOnlySpec extends SbtJsTestSpec("testOnly") {
     }
 
     "announce that 1 spec ran with 1 failure" in {
-      result.futureValue._2.reverse.apply(2) shouldEqual "[info] 1 spec, 1 failure"
+      result.futureValue._2.reverse.apply(3) shouldEqual "[info] 1 spec, 1 failure"
     }
 
     "announce that the task was unsuccessful" in {

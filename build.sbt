@@ -6,7 +6,7 @@ organization := "com.joescii"
 
 homepage := Some(url("https://github.com/joescii/sbt-js-test"))
 
-version := "0.2.0"
+version := "0.3.0"
 
 val htmlunitVersion = settingKey[String]("Version of htmlunit")
 htmlunitVersion := "2.19"
@@ -22,7 +22,7 @@ libraryDependencies ++= Seq(
   "net.sourceforge.htmlunit"  %  "htmlunit"             % htmlunitVersion.value       % "compile",
   "org.webjars"               %  "webjars-locator-core" % webjarLocatorVersion.value  % "compile",
   "org.webjars.bower"         %  "jasmine"              % jasmineVersion.value        % "provided",
-  "org.scalatest"             %% "scalatest"            % "2.2.6"                     % "test,it"
+  "org.scalatest"             %% "scalatest"            % "3.0.5"                     % "test,it"
 )
 
 // don't bother publishing javadoc
@@ -30,14 +30,13 @@ publishArtifact in (Compile, packageDoc) := false
 
 sbtVersion in Global := {
   scalaBinaryVersion.value match {
-    case "2.10" => "0.13.11"
-//    case "2.9.2" => "0.12.4"
+    case "2.12" => "1.2.8"
   }
 }
 
-scalaVersion in Global := "2.10.5"
+scalaVersion in Global := "2.12.8"
 
-crossScalaVersions := Seq("2.10.5")
+crossScalaVersions := Seq("2.12.8")
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
@@ -69,10 +68,10 @@ copyJarForTests := {
 
   dst
 }
-copyJarForTests <<= copyJarForTests.dependsOn(Keys.`package` in Compile)
+copyJarForTests := (copyJarForTests.dependsOn(Keys.`package` in Compile)).value
 
-(test in IntegrationTest) <<= (test in IntegrationTest).dependsOn(copyJarForTests)
-(testOnly in IntegrationTest) <<= (testOnly in IntegrationTest).dependsOn(copyJarForTests)
+(test in IntegrationTest) := ((test in IntegrationTest).dependsOn(copyJarForTests)).value
+(testOnly in IntegrationTest) := ((testOnly in IntegrationTest).dependsOn(copyJarForTests)).evaluated
 
 buildInfoKeys := Seq[BuildInfoKey](
   version,
